@@ -29,6 +29,7 @@ def scrapingEvent(event, event_url, event_number, event_names, event_information
 		venue_ids.each_with_index do |venue, index|
 			venue_url = event_url + "/0/#{venue['value']}"
 			venue_page = accessingHTML(venue_url)
+
 			scrapingEvent(venue_page,venue_url,index+1, event_names, event_information_array, 
 			images, ticket_prices, starting_times, ticket_collection_array, doors_open_array, durations, 
 			parking_array, venues_array, datetimes_array, all_additional_information_array)
@@ -37,6 +38,7 @@ def scrapingEvent(event, event_url, event_number, event_names, event_information
 		# the fields
 		# puts "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
 		event_name = event.css('h1 a').attr('title')
+
 		event_names << event_name
 		puts "event_name: " + event_name
 		
@@ -155,6 +157,8 @@ def storingPages(url,pages,start,finish)
 end
 
 def storingEvents(base_url,pages,events,start,finish)
+
+	# for page_index in start..finish
 	puts pages.length
 
 	eindex=1
